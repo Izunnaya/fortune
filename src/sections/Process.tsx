@@ -75,44 +75,14 @@ export default function Process() {
   return (
     <section
       ref={sectionRef}
-      style={{
-        backgroundColor: "#181819",
-        padding: "clamp(60px, 10vw, 120px) 0",
-        overflow: "hidden",
-      }}
+      className="bg-charcoal py-[clamp(60px,10vw,120px)] overflow-hidden"
     >
       {/* Header */}
-      <div
-        style={{
-          padding: "0 clamp(24px, 5vw, 80px)",
-          maxWidth: "1400px",
-          margin: "0 auto 60px",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "'Space Mono', monospace",
-            fontSize: "12px",
-            fontWeight: 700,
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            color: "#C8A55C",
-            display: "block",
-            marginBottom: "16px",
-          }}
-        >
+      <div className="px-[clamp(24px,5vw,80px)] max-w-[1400px] mx-auto mb-[60px]">
+        <span className="font-mono text-xs font-bold uppercase tracking-[0.1em] text-gold block mb-4">
           PROCESS
         </span>
-        <h2
-          style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(2.5rem, 6vw, 5rem)",
-            lineHeight: 1.05,
-            fontWeight: 400,
-            color: "#F4F1EA",
-            margin: 0,
-          }}
-        >
+        <h2 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] font-normal text-paper m-0">
           How We Work Together
         </h2>
       </div>
@@ -122,62 +92,24 @@ export default function Process() {
         {steps.map((step, index) => (
           <div
             key={step.number}
-            className="lg:flex-shrink-0 lg:w-[1024px] lg:min-h-[60vh]"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              padding: "40px clamp(24px, 5vw, 80px)",
-              borderLeft:
-                index > 0 ? "1px solid rgba(200, 165, 92, 0.3)" : "none",
-            }}
+            className={`lg:flex-shrink-0 lg:w-[1024px] lg:min-h-[60vh] flex flex-col justify-center py-10 px-[clamp(24px,5vw,80px)] ${
+              index > 0 ? "border-l border-gold/30" : ""
+            }`}
           >
             <span
               aria-hidden="true"
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "clamp(4rem, 10vw, 8rem)",
-                color: "rgba(200, 165, 92, 0.15)",
-                display: "block",
-                lineHeight: 1,
-                marginBottom: "16px",
-              }}
+              className="font-data text-[clamp(4rem,10vw,8rem)] text-gold/[0.15] block leading-none mb-4"
             >
               {step.number}
             </span>
-            <h3
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
-                lineHeight: 1.1,
-                fontWeight: 400,
-                color: "#F4F1EA",
-                margin: "0 0 16px",
-              }}
-            >
+            <h3 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] font-normal text-paper mb-4">
               {step.title}
             </h3>
-            <p
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "18px",
-                lineHeight: 1.7,
-                color: "rgba(244, 241, 234, 0.8)",
-                maxWidth: "400px",
-                margin: 0,
-              }}
-            >
+            <p className="font-mono text-lg leading-[1.7] text-paper/80 max-w-[400px] m-0">
               {step.desc}
             </p>
             {index < steps.length - 1 && (
-              <div
-                className="lg:hidden"
-                style={{
-                  height: "1px",
-                  backgroundColor: "rgba(200, 165, 92, 0.3)",
-                  marginTop: "40px",
-                }}
-              />
+              <div className="lg:hidden h-px bg-gold/30 mt-10" />
             )}
           </div>
         ))}

@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
 interface PreloaderProps {
   onComplete: () => void;
@@ -19,10 +19,11 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       },
     });
 
-    tl.fromTo(lineRef.current, { width: '0%' }, { width: '100%', duration: 1.2, ease: 'power2.inOut' })
+    // GSAP animates width from 0% → 100%, so width stays as inline style
+    tl.fromTo(lineRef.current, { width: "0%" }, { width: "100%", duration: 1.2, ease: "power2.inOut" })
       .to(lineRef.current, { opacity: 0, duration: 0.3 })
-      .to(textRef.current, { scale: 1.05, duration: 0.4, ease: 'power2.out' })
-      .to(containerRef.current, { opacity: 0, duration: 0.6, ease: 'power2.out' });
+      .to(textRef.current, { scale: 1.05, duration: 0.4, ease: "power2.out" })
+      .to(containerRef.current, { opacity: 0, duration: 0.6, ease: "power2.out" });
 
     return () => { tl.kill(); };
   }, [onComplete]);
@@ -30,30 +31,17 @@ export default function Preloader({ onComplete }: PreloaderProps) {
   if (!isVisible) return null;
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 100,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        pointerEvents: 'auto',
-        backgroundColor: '#181819',
-      }}
-    >
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
-        <div
-          ref={textRef}
-          style={{ fontFamily: "'Playfair Display', serif", color: '#F4F1EA', fontSize: '20px' }}
-        >
-          Fortune Artz<span style={{ color: '#C8A55C', marginLeft: '8px' }}>&amp;</span>{' '}
-          <span style={{ color: '#C8A55C' }}>Creatives</span>
+    <div ref={containerRef} className="fixed inset-0 z-[100] flex items-center justify-center bg-charcoal">
+      <div className="flex flex-col items-center gap-6">
+        <div ref={textRef} className="font-display text-paper text-xl">
+          Fortune Artz<span className="text-gold ml-2">&amp;</span>{" "}
+          <span className="text-gold">Creatives</span>
         </div>
+        {/* width animated by GSAP — keep as inline style */}
         <div
           ref={lineRef}
-          style={{ height: '1px', backgroundColor: '#C8A55C', width: '0%', maxWidth: '200px' }}
+          className="h-px bg-gold max-w-[200px]"
+          style={{ width: "0%" }}
         />
       </div>
     </div>

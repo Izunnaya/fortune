@@ -14,15 +14,10 @@ export default function Navigation() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-  ) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileOpen(false);
     scrollToSection(href);
@@ -31,93 +26,34 @@ export default function Navigation() {
   return (
     <>
       <nav
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          backgroundColor: scrolled
-            ? "rgba(24, 24, 25, 0.95)"
-            : "rgba(24, 24, 25, 0.8)",
-          backdropFilter: "blur(12px)",
-          borderBottom: scrolled
-            ? "1px solid rgba(244, 241, 234, 0.1)"
-            : "1px solid transparent",
-          padding: "16px 20px",
-          transition: "all 0.3s ease",
-        }}
+        className={`fixed top-0 left-0 right-0 z-50 px-5 py-4 backdrop-blur-md transition-all duration-300 ${
+          scrolled
+            ? "bg-charcoal/95 border-b border-paper/10"
+            : "bg-charcoal/80 border-b border-transparent"
+        }`}
       >
-        <div
-          style={{
-            maxWidth: "1400px",
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between">
+
           {/* Logo */}
           <a
             href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            style={{ textDecoration: "none" }}
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className="no-underline"
           >
-            <span
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "16px",
-                color: "#F4F1EA",
-              }}
-            >
-              Fortune Artz
-            </span>
-            <span
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "10px",
-                color: "#C8A55C",
-                position: "relative",
-                top: "-4px",
-                marginLeft: "4px",
-              }}
-            >
+            <span className="font-display text-2xl text-paper">Fortune Artz</span>
+            <span className="font-mono text-[15px] text-gold relative top-[-7px] ml-0.5">
               &amp; Creatives
             </span>
           </a>
 
           {/* Desktop Nav */}
-          <div
-            style={{ alignItems: "center", gap: "32px" }}
-            className="hidden md:flex"
-          >
+          <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                style={{
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "12px",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                  color: "#F4F1EA",
-                  opacity: 0.8,
-                  textDecoration: "none",
-                  transition: "all 0.3s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.opacity = "1";
-                  e.currentTarget.style.transform = "translateY(-1px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.opacity = "0.8";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
+                className="font-mono text-xs font-bold uppercase tracking-[0.08em] text-paper opacity-80 no-underline transition-all duration-300 hover:opacity-100 hover:-translate-y-px"
               >
                 {link.label}
               </a>
@@ -126,47 +62,19 @@ export default function Navigation() {
 
           {/* Mobile Hamburger */}
           <button
-            className="p-2 bg-none border-none cursor-pointer flex md:hidden flex-col gap-1.5 w-[36px] bg-center justify-center"
+            className="md:hidden flex flex-col gap-[5px] w-9 items-center justify-center p-2 bg-transparent border-none cursor-pointer"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
-            // style={{
-            //   padding: "8px",
-            //   background: "none",
-            //   border: "none",
-            //   cursor: "pointer",
-            //   display: "none",
-            //   flexDirection: "column",
-            //   gap: "5px",
-            //   width: "36px",
-            //   alignItems: "center",
-            //   justifyContent: "center",
-            // }}
           >
             <span
-              style={{
-                display: "block",
-                height: "1.5px",
-                width: "22px",
-                backgroundColor: "#F4F1EA",
-                transition: "all 0.3s ease",
-                transform: mobileOpen
-                  ? "rotate(45deg) translateY(3.25px)"
-                  : "none",
-              }}
+              className="block h-[1.5px] w-[22px] bg-paper transition-all duration-300"
+              style={{ transform: mobileOpen ? "rotate(45deg) translateY(3.25px)" : "none" }}
             />
             <span
-              style={{
-                display: "block",
-                height: "1.5px",
-                width: "22px",
-                backgroundColor: "#F4F1EA",
-                transition: "all 0.3s ease",
-                transform: mobileOpen
-                  ? "rotate(-45deg) translateY(-3.25px)"
-                  : "none",
-              }}
+              className="block h-[1.5px] w-[22px] bg-paper transition-all duration-300"
+              style={{ transform: mobileOpen ? "rotate(-45deg) translateY(-3.25px)" : "none" }}
             />
           </button>
         </div>
@@ -175,22 +83,10 @@ export default function Navigation() {
       {/* Mobile Overlay */}
       <div
         id="mobile-menu"
-        className="md:hidden"
         aria-hidden={!mobileOpen}
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 40,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "36px",
-          backgroundColor: "rgba(24, 24, 25, 0.98)",
-          opacity: mobileOpen ? 1 : 0,
-          pointerEvents: mobileOpen ? "auto" : "none",
-          transition: "opacity 0.5s ease",
-        }}
+        className={`md:hidden fixed inset-0 z-40 flex flex-col items-center justify-center gap-9 bg-charcoal/[0.98] transition-opacity duration-500 ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
       >
         {NAV_LINKS.map((link, i) => (
           <a
@@ -198,15 +94,11 @@ export default function Navigation() {
             href={link.href}
             onClick={(e) => handleNavClick(e, link.href)}
             tabIndex={mobileOpen ? 0 : -1}
+            className="font-display text-[32px] font-normal text-paper no-underline transition-all duration-[400ms]"
             style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "32px",
-              fontWeight: 400,
-              color: "#F4F1EA",
-              textDecoration: "none",
               opacity: mobileOpen ? 1 : 0,
               transform: mobileOpen ? "translateY(0)" : "translateY(12px)",
-              transition: `all 0.4s ease ${mobileOpen ? i * 80 + 150 : 0}ms`,
+              transitionDelay: mobileOpen ? `${i * 80 + 150}ms` : "0ms",
             }}
           >
             {link.label}

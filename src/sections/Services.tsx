@@ -1,24 +1,24 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useReducedMotion } from '../hooks/useReducedMotion';
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 
 const services = [
   {
-    title: 'Drone & Aerial',
-    desc: 'Real estate showcases, property inspections, and cinematic aerial coverage. Every flight delivers perspectives that ground-based cameras simply cannot achieve.',
+    title: "Drone & Aerial",
+    desc: "Real estate showcases, property inspections, and cinematic aerial coverage. Every flight delivers perspectives that ground-based cameras simply cannot achieve.",
   },
   {
-    title: 'Event Coverage',
-    desc: 'From corporate launches to intimate celebrations — capturing the energy, emotion, and key moments that tell the full story.',
+    title: "Event Coverage",
+    desc: "From corporate launches to intimate celebrations — capturing the energy, emotion, and key moments that tell the full story.",
   },
   {
-    title: 'Commercial & Brand',
-    desc: 'Product launches, brand campaigns, and social content designed to stop the scroll and drive engagement.',
+    title: "Commercial & Brand",
+    desc: "Product launches, brand campaigns, and social content designed to stop the scroll and drive engagement.",
   },
   {
-    title: 'Video Editing',
-    desc: 'Post-production that transforms raw footage into polished narratives. Color grading, sound design, and pacing that holds attention.',
+    title: "Video Editing",
+    desc: "Post-production that transforms raw footage into polished narratives. Color grading, sound design, and pacing that holds attention.",
   },
 ];
 
@@ -27,7 +27,7 @@ export default function Services() {
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const cards = sectionRef.current?.querySelectorAll('.service-card');
+    const cards = sectionRef.current?.querySelectorAll(".service-card");
 
     if (prefersReducedMotion) {
       if (cards) gsap.set(cards, { opacity: 1, y: 0 });
@@ -36,13 +36,20 @@ export default function Services() {
 
     const st = ScrollTrigger.create({
       trigger: sectionRef.current,
-      start: 'top 75%',
-      once: true,
+      start: "top 75%",
       onEnter: () => {
-        const cs = sectionRef.current?.querySelectorAll('.service-card');
+        const cs = sectionRef.current?.querySelectorAll(".service-card");
         if (cs && cs.length > 0) {
-          gsap.fromTo(cs, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out' });
+          gsap.fromTo(
+            cs,
+            { y: 80, opacity: 0, scale: 0.94 },
+            { y: 0, opacity: 1, scale: 1, duration: 0.9, stagger: 0.15, ease: "power3.out" }
+          );
         }
+      },
+      onLeaveBack: () => {
+        const cs = sectionRef.current?.querySelectorAll(".service-card");
+        if (cs) gsap.set(cs, { y: 80, opacity: 0, scale: 0.94 });
       },
     });
 
@@ -53,34 +60,16 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="services"
-      style={{
-        backgroundColor: '#E5DDD0',
-        padding: 'clamp(60px, 10vw, 120px) clamp(24px, 5vw, 80px)',
-      }}
+      className="bg-warm-sand px-[clamp(24px,5vw,80px)] py-[clamp(60px,10vw,120px)]"
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="max-w-[1200px] mx-auto">
+
         {/* Header */}
-        <div style={{ marginBottom: '48px' }}>
-          <span style={{
-            fontFamily: "'Space Mono', monospace",
-            fontSize: '12px',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em',
-            color: '#C8A55C',
-            display: 'block',
-            marginBottom: '16px',
-          }}>
+        <div className="mb-12">
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.1em] text-gold block mb-4">
             SERVICES
           </span>
-          <h2 style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-            lineHeight: 1.05,
-            fontWeight: 400,
-            color: '#181819',
-            margin: 0,
-          }}>
+          <h2 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] font-normal text-charcoal m-0">
             What I Create
           </h2>
         </div>
@@ -90,65 +79,24 @@ export default function Services() {
           {services.map((service, i) => (
             <div
               key={service.title}
-              className="service-card group"
-              style={{
-                backgroundColor: 'rgba(244, 241, 234, 0.6)',
-                border: '1px solid rgba(24, 24, 25, 0.1)',
-                borderRadius: '8px',
-                padding: '40px',
-                position: 'relative',
-                cursor: 'default',
-                transition: 'all 0.3s ease',
-                opacity: 0,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(24, 24, 25, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-4px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(24, 24, 25, 0.1)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
+              className="service-card group bg-paper/60 border border-charcoal/10 rounded-lg p-10 relative cursor-default transition-all duration-300 hover:border-charcoal/30 hover:-translate-y-1"
+              style={{ opacity: 0 }}
             >
-              <span style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '48px',
-                color: 'rgba(200, 165, 92, 0.2)',
-                display: 'block',
-                lineHeight: 1,
-                marginBottom: '16px',
-              }}>
+              <span
+                aria-hidden="true"
+                className="font-data text-5xl text-gold/20 block leading-none mb-4"
+              >
                 0{i + 1}
               </span>
-              <h3 style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: '24px',
-                fontWeight: 400,
-                color: '#181819',
-                margin: '0 0 12px',
-              }}>
+              <h3 className="font-display text-2xl font-normal text-charcoal mb-3">
                 {service.title}
               </h3>
-              <p style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: '16px',
-                lineHeight: 1.6,
-                color: 'rgba(24, 24, 25, 0.8)',
-                margin: 0,
-              }}>
+              <p className="font-mono text-base leading-[1.6] text-charcoal/80 m-0">
                 {service.desc}
               </p>
               <span
                 aria-hidden="true"
-                style={{
-                  position: 'absolute',
-                  bottom: '24px',
-                  right: '24px',
-                  color: '#C8A55C',
-                  fontSize: '20px',
-                  transition: 'transform 0.3s ease',
-                }}
-                className="group-hover:translate-x-1"
+                className="absolute bottom-6 right-6 text-gold text-xl transition-transform duration-300 group-hover:translate-x-1"
               >
                 &rarr;
               </span>
