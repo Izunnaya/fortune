@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: '#181819' }}>
+    <div className="bg-charcoal">
       <a href="#main-content" className="skip-link">Skip to main content</a>
       {!preloaderDone && <Preloader onComplete={handlePreloaderComplete} />}
       <Navigation />

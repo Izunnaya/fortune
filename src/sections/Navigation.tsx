@@ -14,10 +14,15 @@ export default function Navigation() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     e.preventDefault();
     setMobileOpen(false);
     scrollToSection(href);
@@ -33,15 +38,19 @@ export default function Navigation() {
         }`}
       >
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
-
           {/* Logo */}
           <a
             href="#"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className="no-underline"
           >
-            <span className="font-display text-2xl text-paper">Fortune Artz</span>
-            <span className="font-mono text-[15px] text-gold relative top-[-7px] ml-0.5">
+            <span className="font-display md:text-2xl text-paper">
+              Fortune Artz
+            </span>
+            <span className="font-mono text-[12px] md:text-[15px] text-gold relative top-[-7px] ml-0.5">
               &amp; Creatives
             </span>
           </a>
@@ -70,11 +79,19 @@ export default function Navigation() {
           >
             <span
               className="block h-[1.5px] w-[22px] bg-paper transition-all duration-300"
-              style={{ transform: mobileOpen ? "rotate(45deg) translateY(3.25px)" : "none" }}
+              style={{
+                transform: mobileOpen
+                  ? "rotate(45deg) translateY(3.25px)"
+                  : "none",
+              }}
             />
             <span
               className="block h-[1.5px] w-[22px] bg-paper transition-all duration-300"
-              style={{ transform: mobileOpen ? "rotate(-45deg) translateY(-3.25px)" : "none" }}
+              style={{
+                transform: mobileOpen
+                  ? "rotate(-45deg) translateY(-3.25px)"
+                  : "none",
+              }}
             />
           </button>
         </div>
@@ -85,7 +102,9 @@ export default function Navigation() {
         id="mobile-menu"
         aria-hidden={!mobileOpen}
         className={`md:hidden fixed inset-0 z-40 flex flex-col items-center justify-center gap-9 bg-charcoal/[0.98] transition-opacity duration-500 ${
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          mobileOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
         {NAV_LINKS.map((link, i) => (

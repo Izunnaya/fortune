@@ -91,15 +91,29 @@
     color: #181819;
   }
 
-  ::-webkit-scrollbar {
-    width: 6px;
+  /* Mobile — hide scrollbar completely */
+  @media (max-width: 767px) {
+    html, body {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
-  ::-webkit-scrollbar-track {
-    background: #181819;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #C8A55C;
-    border-radius: 3px;
+
+  /* Desktop — keep a thin gold accent scrollbar */
+  @media (min-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #181819;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C8A55C;
+      border-radius: 2px;
+    }
   }
 }
 

@@ -25,4 +25,4 @@ export const CONTACT = {
  *
  * DELIVERY — replace with Fortune's Calendly username before going live.
  */
-export const CALENDLY_URL = 'https://calendly.com/ugorjimicheal-um/30min';
+export const CALENDLY_URL = 'https://calendly.com/fortunethecreative/30min';
