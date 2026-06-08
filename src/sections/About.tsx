@@ -47,7 +47,7 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="bg-charcoal px-[clamp(24px,5vw,80px)] py-[clamp(60px,10vw,120px)]"
+      className="bg-charcoal px-[clamp(24px,5vw,80px)] py-[clamp(60px,10vw,120px)] overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto grid lg:grid-cols-[55%_45%] gap-12 items-start">
 
@@ -78,9 +78,9 @@ export default function About() {
         <div className="about-image order-1 lg:order-2 lg:-mt-10" style={{ opacity: 0 }}>
           <div className="rounded overflow-hidden">
             <img
-              src="/images/fortune-real.jpg"
-              alt="Fortune Chisom Emeruem — Creative Director and Founder of Fortune Artz & Creatives"
-              className="w-full object-cover max-h-[520px]"
+              src="/images/about-portrait.jpg"
+              alt="Emeruem Chisom Fortune — Creative Director & Founder of Fortune Artz and Creatives"
+              className="w-full object-cover max-h-[580px] object-top"
               loading="lazy"
             />
           </div>

@@ -60,7 +60,7 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="bg-warm-sand px-[clamp(24px,5vw,80px)] py-[clamp(60px,10vw,120px)]"
+      className="bg-warm-sand px-[clamp(24px,5vw,80px)] py-[clamp(60px,10vw,120px)] overflow-hidden"
     >
       <div className="max-w-[1200px] mx-auto">
 

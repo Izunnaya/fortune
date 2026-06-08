@@ -72,7 +72,7 @@ export default function Booking() {
     <section
       ref={sectionRef}
       id="booking"
-      className="bg-charcoal px-[clamp(24px,5vw,80px)] py-[clamp(60px,10vw,120px)]"
+      className="bg-charcoal px-[clamp(24px,5vw,80px)] py-[clamp(60px,10vw,120px)] overflow-hidden"
     >
       <div ref={contentRef} className="max-w-[800px] mx-auto text-center" style={{ opacity: 0 }}>
         <span className="font-mono text-xs font-bold uppercase tracking-[0.1em] text-gold block mb-4">

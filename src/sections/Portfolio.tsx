@@ -131,7 +131,7 @@ export default function Portfolio() {
   return (
     <section
       id="portfolio"
-      className="bg-deep-black px-[clamp(24px,5vw,80px)] py-[clamp(60px,10vw,120px)]"
+      className="bg-deep-black px-[clamp(24px,5vw,80px)] py-[clamp(60px,10vw,120px)] overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto">
 
